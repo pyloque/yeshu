@@ -11,14 +11,14 @@ let mainWindow
 
 function fileURL(name) {
 	if(process.env.NODE_ENV == 'development') {
-		return `http://localhost:${env.port}/${name}`	
+		return `http://localhost:${env.port}/${name}`
 	} else {
 		return `file://${__dirname}/${name}`
 	}
 }
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 1536, height: 800})
+  mainWindow = new BrowserWindow({fullscreen: true})
 
   mainWindow.loadURL(fileURL("index.html"))
   // mainWindow.webContents.openDevTools()
