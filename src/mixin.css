@@ -1,0 +1,11 @@
+.ql-screenfull {
+  text-align: left
+}
+.ql-screenfull:after {
+    content: "⎈";
+    font-size: 1.5em;
+}
+:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+}
