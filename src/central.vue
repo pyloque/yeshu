@@ -1,33 +1,27 @@
 <template>
-  <el-tabs>
-    <el-tab-pane label="我们分手吧" closable>
-      <el-card shadow="never" :body-style='{padding: 0, border: 0}'>
-        <div slot="header">
-          <span>第一卷必须分手 * 第一章我们分手吧</span>
-        </div>
-        <quill-editor id="editor">
-        </quill-editor>
-      </el-card>
-    </el-tab-pane>
-    <el-tab-pane label="一个误会" closable>
-      <el-card shadow="never" :body-style='{padding: 0, border: 0}'>
-        <div slot="header">
-          <span>第一卷必须分手 * 第一章一个误会</span>
-        </div>
-        <quill-editor>
-        </quill-editor>
-      </el-card>
-    </el-tab-pane>
-    <el-tab-pane label="把经理揍了" closable>
-      <el-card shadow="never" :body-style='{padding: 0, border: 0}'>
-        <div slot="header">
-          <span>第一卷必须分手 * 第一章把经理揍了</span>
-        </div>
-        <quill-editor>
-        </quill-editor>
-      </el-card>
-    </el-tab-pane>
-  </el-tabs>
+<v-content>
+  <v-container class="pa-0 ma-0">
+  <v-layout>
+  <v-flex xs12>
+    <v-tabs grow v-model="chapterId">
+      <v-tab v-for="(chapter, ci) in editingChapters" :key="ci">
+        <v-spacer/>{{chapter}}<v-spacer/><v-btn fab flat small><v-icon>close</v-icon></v-btn>
+      </v-tab>
+    </v-tabs>
+    <v-tabs-items v-model="chapterId">
+      <v-tab-item v-for="(chapter, ci) in editingChapters" :key="ci">
+        <v-card>
+          <v-card-text>
+            <quill-editor :id="'editor-' + ci">
+            </quill-editor>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
+  </v-flex>
+  </v-layout>
+  </v-container>
+</v-content>
 </template>
 
 <script>
@@ -38,6 +32,8 @@ export default {
   data() {
     return {
       fullscreen: false,
+      chapterId: 0,
+      editingChapters: ["男人也可以", "怎么又是他", "可怜的垃圾桶", "我的女人"],
     }
   },
   mounted() {
@@ -45,7 +41,7 @@ export default {
     btnsf.addEventListener('click', () => {
       if (screenfull.enabled) {
         if(!this.fullscreen) {
-          screenfull.request(document.getElementById("editor"));
+          screenfull.request(document.getElementById("editor-"+ this.chapterId));
           this.fullscreen = true;
         } else {
           screenfull.exit();
@@ -56,9 +52,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.el-tab-pane {
-  text-align: left;
-}
-</style>

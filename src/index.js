@@ -19,7 +19,7 @@ Vue.use(VueQuillEditor, {
       [{ 'header': 1 }, { 'header': 2 }],
       [{ 'script': 'sub' }, { 'script': 'super' }],
       ['blockquote', 'code-block'],
-      ['link', 'image', 'video'],
+      ['link', 'image'],
       ['screenfull']
     ],
     syntax: {
@@ -29,12 +29,15 @@ Vue.use(VueQuillEditor, {
   theme: "snow"
 })
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI)
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+Vue.use(Vuetify)
 
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
+
+import Filters from './filters'
+Vue.use(Filters)
 
 const router = new VueRouter()
 import App from './app'

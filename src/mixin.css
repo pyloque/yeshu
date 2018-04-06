@@ -1,9 +1,9 @@
 .ql-screenfull {
-  text-align: left
+  text-align: right;
 }
 .ql-screenfull:after {
-    content: "⎈";
-    font-size: 1.5em;
+    content: "全屏";
+    font-size: 0.6em;
 }
 :-webkit-full-screen {
   width: 100%;
